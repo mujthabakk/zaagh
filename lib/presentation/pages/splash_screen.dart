@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:music_app/presentation/pages/home_screen.dart';
 // import 'package:your_app/home_screen.dart'; // Import your main screen after splash
 
@@ -8,7 +7,7 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black, // Set your desired background color
-      body: Center(child: Image.asset('assets/image/zaagh.png')),
+      body: Center(child: Image.asset('assets/image/music _img.png')),
     );
   }
 }
