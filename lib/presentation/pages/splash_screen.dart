@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:music_app/presentation/pages/home_screen.dart';
 // import 'package:your_app/home_screen.dart'; // Import your main screen after splash
 
 class SplashScreen extends StatefulWidget {
@@ -14,29 +16,18 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Simulate a long-running task by using Future.delayed
-    Timer(const Duration(seconds: 3), () {
-      // Navigate to the main screen once the splash screen is done
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(builder: (_) => HomeScreen()),
-      // );
+    Timer(const Duration(seconds: 5), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue, // Set your desired background color
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Your logo or branding widget
-            Image.asset('assets/logo.png'), // Example image asset
-            SizedBox(height: 20), // Adjust spacing as needed
-            CircularProgressIndicator(), // Loading indicator or any other loading widget
-          ],
-        ),
-      ),
+      backgroundColor: Colors.black, // Set your desired background color
+      body: Center(child: Image.asset('assets/image/zaagh.png')),
     );
   }
 }
