@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
+import 'package:music_app/presentation/widget/song_tile.dart';
 import 'package:music_app/presentation/widgets/Not%20Found/not_found_widget.dart';
 import 'package:music_app/presentation/widgets/Search%20Field/search_field_widget.dart';
 
@@ -19,17 +20,18 @@ class SearchPage extends ConsumerWidget {
           ),
           const SearchField(),
           SizedBox(
-            height: context.h(200),
+            height: context.h(20),
           ),
           ref.watch(isDataFound)
-              ? const Text(
-                  'search',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              : const NotFound(),
+              ? const SongTile(title: 'songtitle', subtitle: '')
+              : Column(
+                  children: [
+                    SizedBox(
+                      height: context.h(250),
+                    ),
+                    const NotFound(),
+                  ],
+                ),
         ],
       ),
     );

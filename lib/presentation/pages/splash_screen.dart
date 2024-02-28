@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Simulate a long-running task by using Future.delayed
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const MainPage()),
+        MaterialPageRoute(builder: (_) =>  MainPage()),
       );
     });
   }

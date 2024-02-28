@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/presentation/widget/song_tile.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({super.key});
@@ -6,14 +7,12 @@ class FavouritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: 1,
-        itemBuilder: (context, index) => Card(
-          child: ListTile(
-            title: const Text('song title'),
-            leading: Card(
-              child: Image.asset('assets/image/zaagh.png'),
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(8 * 2),
+        child: ListView.builder(
+          itemCount: 1,
+          itemBuilder: (context, index) => const SongTile(
+            title: 'song title', subtitle: '',
           ),
         ),
       ),

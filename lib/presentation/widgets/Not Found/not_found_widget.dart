@@ -10,7 +10,7 @@ class NotFound extends StatelessWidget {
     return Column(
       children: [
         Image.asset(
-          "assets/gif/sad.gif",
+          "assets/image/search.png",
         ),
         const Text(
           'Not Found',
