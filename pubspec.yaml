@@ -7,17 +7,33 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
+  dio: ^5.4.1
   flutter:
     sdk: flutter
+<<<<<<< HEAD
   google_fonts: ^6.1.0
+=======
+  flutter_riverpod: ^2.4.10
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  riverpod_annotation: ^2.3.4
+>>>>>>> a5488d52a74cff4a4a4334835949f5514027146a
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.8
+  riverpod_generator: ^2.3.11
+  freezed: ^2.4.7
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true
   assets:
    - assets/image/ 
+<<<<<<< HEAD
    - assets/icon/
+=======
+   - assets/gif/ 
+>>>>>>> a5488d52a74cff4a4a4334835949f5514027146a
