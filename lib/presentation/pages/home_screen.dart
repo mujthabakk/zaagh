@@ -23,21 +23,21 @@ class HomeScreen extends StatelessWidget {
           MusicCategory(
             musiccategory: 'musiccategory',
           ),
-          Listview(
+          ListviewWidget(
             listviewdiscription: 'discription',
             listviewimg: 'assets/image/music _img.png',
           ),
           MusicCategory(
             musiccategory: 'musiccategory',
           ),
-          Listview(
+          ListviewWidget(
             listviewdiscription: 'discription',
             listviewimg: 'assets/image/music _img.png',
           ),
           MusicCategory(
             musiccategory: 'musiccategory',
           ),
-          Listview(
+          ListviewWidget(
             listviewdiscription: 'discription',
             listviewimg: 'assets/image/music _img.png',
           ),
