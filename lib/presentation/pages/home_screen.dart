@@ -22,31 +22,33 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       drawer: const DrawerWidget(),
-      body: const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MusicCategory(
-            musiccategory: 'musiccategory',
-          ),
-          Listview(
-            listviewdiscription: 'discription',
-            listviewimg: 'assets/image/music _img.png',
-          ),
-          MusicCategory(
-            musiccategory: 'musiccategory',
-          ),
-          Listview(
-            listviewdiscription: 'discription',
-            listviewimg: 'assets/image/music _img.png',
-          ),
-          MusicCategory(
-            musiccategory: 'musiccategory',
-          ),
-          Listview(
-            listviewdiscription: 'discription',
-            listviewimg: 'assets/image/music _img.png',
-          ),
-        ],
+      body: const SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MusicCategory(
+              musiccategory: 'musiccategory',
+            ),
+            ListviewWidget(
+              listviewdiscription: 'discription',
+              listviewimg: 'assets/image/music _img.png',
+            ),
+            MusicCategory(
+              musiccategory: 'musiccategory',
+            ),
+            ListviewWidget(
+              listviewdiscription: 'discription',
+              listviewimg: 'assets/image/music _img.png',
+            ),
+            MusicCategory(
+              musiccategory: 'musiccategory',
+            ),
+            ListviewWidget(
+              listviewdiscription: 'discription',
+              listviewimg: 'assets/image/music _img.png',
+            ),
+          ],
+        ),
       ),
     );
   }
