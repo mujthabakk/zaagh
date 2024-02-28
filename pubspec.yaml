@@ -15,10 +15,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   riverpod_annotation: ^2.3.4
-  objectbox_flutter_libs: ^2.5.0
-  objectbox: ^2.5.0
-  path_provider: ^2.1.2
-  permission_handler: ^11.3.0
+  just_audio: ^0.9.36
+  audio_video_progress_bar: ^2.0.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +35,4 @@ flutter:
    - assets/image/ 
    - assets/icon/
    - assets/gif/ 
+   - assets/song/song1.mp3 
