@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/core/utils/dynamic_size.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 
 class AppTitle extends StatelessWidget {
+  final double imgwidth;
+  final double fontsize;
   final String titileText;
   final String image;
+  final TextStyle textstyle;
   const AppTitle({
     super.key,
+    this.fontsize = 20,
+    required this.textstyle,
+    required this.imgwidth,
     required this.image,
-     required this.titileText,
-    
+    required this.titileText,
   });
 
   @override
@@ -20,19 +22,12 @@ class AppTitle extends StatelessWidget {
       children: [
         Image.asset(
           image,
-          width: context.w(40),
+          width: imgwidth,
         ),
         const SizedBox(
           width: 10,
         ),
-        Text(
-          titileText,
-          style: GoogleFonts.pacifico(
-            textStyle: const TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        )
+        Text(titileText, style: textstyle)
       ],
     );
   }
