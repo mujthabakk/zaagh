@@ -16,7 +16,10 @@ class Listviewcontainer extends StatelessWidget {
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const SongPlayingPage(),
+            builder: (context) => const SongPlayingPage(
+              uriLink:
+                  'https://orangefreesounds.com/wp-content/uploads/2023/10/Calm-sea-sound-effect.mp3',
+            ),
           )),
       child: Container(
         width: context.w(150),
