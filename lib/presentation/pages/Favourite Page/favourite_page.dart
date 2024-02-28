@@ -9,10 +9,12 @@ class FavouritePage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8 * 2),
-        child: ListView.builder(
+        child: ListView.separated(
           itemCount: 1,
+          separatorBuilder: (context, index) => const Divider(),
           itemBuilder: (context, index) => const SongTile(
-            title: 'song title', subtitle: '',
+            title: 'song title',
+            subtitle: '',
           ),
         ),
       ),

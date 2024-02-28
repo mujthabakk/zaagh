@@ -23,7 +23,14 @@ class SearchPage extends ConsumerWidget {
             height: context.h(20),
           ),
           ref.watch(isDataFound)
-              ? const SongTile(title: 'songtitle', subtitle: '')
+              ? ListView.separated(
+                  itemBuilder: (context, index) => const SongTile(
+                    title: 'songtitle',
+                    subtitle: '',
+                  ),
+                  itemCount: 1,
+                  separatorBuilder: (context, index) => const Divider(),
+                )
               : Column(
                   children: [
                     SizedBox(
