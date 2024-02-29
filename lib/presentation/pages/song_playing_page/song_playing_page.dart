@@ -7,9 +7,17 @@ import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/presentation/widget/app_title.dart';
 import 'package:music_app/presentation/widget/musicplayingimage_widget.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class SongPlayingPage extends ConsumerStatefulWidget {
-  const SongPlayingPage( {super.key,required this.option});
+  const SongPlayingPage({
+    this.data,
+    this.index,
+    super.key,
+    required this.option,
+  });
+  final List<SongModel>? data;
+  final int? index;
   final AudioSource option;
 
   @override
@@ -19,13 +27,12 @@ class SongPlayingPage extends ConsumerStatefulWidget {
 StateProvider<bool> isPlaying = StateProvider<bool>((ref) => false);
 
 class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
-  final player = AudioPlayer();
-
+  final AudioPlayer player = AudioPlayer();
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    // _setupAudioPlayer();
+    _setupAudioPlayer();
   }
 
   String formatTime(int seconds) =>
@@ -66,7 +73,41 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                IconButton(
+                  onPressed: () {
+                    player.pause();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SongPlayingPage(
+                                option: AudioSource.file(
+                                    widget.data![widget.index! + 1].data),
+                                data: widget.data,
+                                index: widget.index,
+                              )),
+                    );
+                  },
+                  icon: const Icon(Icons.skip_previous),
+                  iconSize: 55,
+                ),
                 _playbackControlButton(),
+                IconButton(
+                  onPressed: () {
+                    player.pause();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SongPlayingPage(
+                                option: AudioSource.file(
+                                    widget.data![widget.index! - 1].data),
+                                data: widget.data,
+                                index: widget.index,
+                              )),
+                    );
+                  },
+                  icon: const Icon(Icons.skip_next),
+                  iconSize: 55,
+                ),
               ],
             )
           ],
@@ -76,12 +117,15 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
   }
 
   Future<void> _setupAudioPlayer() async {
-    player.playbackEventStream
-        .listen((event) {}, onError: (Object e, StackTrace stackTrace) {
-          log('playbackEventStream error $e');
-        });
+    player.playbackEventStream.listen((event) {},
+        onError: (Object e, StackTrace stackTrace) {
+      log('playbackEventStream error $e');
+    });
     try {
       player.setAudioSource(widget.option);
+      if (player.audioSource != null) {
+        player.play();
+      }
     } catch (e) {
       throw e.toString();
     }

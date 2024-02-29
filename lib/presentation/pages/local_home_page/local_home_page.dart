@@ -39,7 +39,7 @@ class LocalHomePage extends ConsumerWidget {
                               log(snapshot.data![index].data);
                               return SongPlayingPage(
                                 option: AudioSource.file(
-                                    snapshot.data![index].data),
+                                    snapshot.data![index].data), data: snapshot.data!,index: index,
                               );
                             },
                           ));
