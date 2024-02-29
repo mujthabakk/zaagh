@@ -17,6 +17,7 @@ dependencies:
   riverpod_annotation: ^2.3.4
   just_audio: ^0.9.36
   audio_video_progress_bar: ^2.0.1
+  permission_handler: ^11.3.0
   
 
 dev_dependencies:
