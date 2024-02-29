@@ -19,13 +19,13 @@ class ListviewWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.all(5),
+          padding: EdgeInsets.all(context.w(5)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Listviewcontainer(listviewimg: listviewimg),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: context.h(10),
               ),
               Text(listviewdiscription)
             ],

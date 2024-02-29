@@ -9,8 +9,8 @@ import 'package:music_app/presentation/widget/app_title.dart';
 import 'package:music_app/presentation/widget/musicplayingimage_widget.dart';
 
 class SongPlayingPage extends ConsumerStatefulWidget {
-  const SongPlayingPage( {super.key,required this.uriLink});
-  final String uriLink;
+  const SongPlayingPage( {super.key,required this.option});
+  final AudioSource option;
 
   @override
   ConsumerState<SongPlayingPage> createState() => _SongPlayingPageState();
@@ -25,7 +25,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    _setupAudioPlayer();
+    // _setupAudioPlayer();
   }
 
   String formatTime(int seconds) =>
@@ -81,7 +81,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
           log('playbackEventStream error $e');
         });
     try {
-      player.setAudioSource(AudioSource.uri(Uri.parse(widget.uriLink)));
+      player.setAudioSource(widget.option);
     } catch (e) {
       throw e.toString();
     }
@@ -92,7 +92,6 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
       stream: player.playerStateStream,
       builder: (context, snapshot) {
         final processingState = snapshot.data?.processingState;
-
         final playing = snapshot.data?.playing;
         if (processingState == ProcessingState.buffering ||
             processingState == ProcessingState.loading) {
@@ -136,47 +135,4 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
       ),
     );
   }
-
-  // Widget _controlButtons() {
-  //   return Column(
-  //     mainAxisSize: MainAxisSize.min,
-  //     children: [
-  //       StreamBuilder(
-  //         stream: player.speedStream,
-  //         builder: (context, snapshot) => Row(
-  //           children: [
-  //             const Icon(Icons.speed),
-  //             Slider(
-  //               min: 1,
-  //               max: 3,
-  //               divisions: 3,
-  //               value: snapshot.data ?? 1,
-  //               onChanged: (value) async => await player.setSpeed(value),
-  //             )
-  //           ],
-  //         ),
-  //       )
-  //     ],
-  //   );
-  // }
-  
-  // Widget _controlVolume() {
-  //   return Column(
-  //     mainAxisSize: MainAxisSize.min,
-  //     children: [
-  //       StreamBuilder(
-  //         stream: player.volumeStream,
-  //         builder: (context, snapshot) => Row(
-  //           children: [
-  //             const Icon(Icons.volume_up),
-  //             Slider(
-  //               value: snapshot.data ?? 1,
-  //               onChanged: (value) async => await player.setVolume(value),
-  //             )
-  //           ],
-  //         ),
-  //       )
-  //     ],
-  //   );
-  // }
 }

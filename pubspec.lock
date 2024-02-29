@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  audio_query:
+    dependency: "direct main"
+    description:
+      name: audio_query
+      sha256: a919c49838ecad8a1bccd381e9c101e662e4887daf002e4b8566c7ae8e66becb
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   audio_session:
     dependency: transitive
     description:
@@ -294,6 +302,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: b068ffc46f82a55844acfa4fdbb61fad72fa2aef0905548419d97f0f95c456da
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.17"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -513,18 +529,10 @@ packages:
     source: hosted
     version: "1.0.5"
   objectbox:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: objectbox
       sha256: "141092d397b100542dda74edb4da85e179fb48bbda1ec36d64fef93cc4189cc7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.0"
-  objectbox_flutter_libs:
-    dependency: "direct main"
-    description:
-      name: objectbox_flutter_libs
-      sha256: f6a048e0f064fe0c6e522ebfaad7522a5f1fe47a1fbc5819709b66aadeeadd66
       url: "https://pub.dev"
     source: hosted
     version: "2.5.0"
