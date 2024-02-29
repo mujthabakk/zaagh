@@ -36,10 +36,10 @@ class LocalHomePage extends ConsumerWidget {
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              log(snapshot.data![index].filePath);
+                              log(snapshot.data![index].data);
                               return SongPlayingPage(
                                 option: AudioSource.file(
-                                    snapshot.data![index].filePath),
+                                    snapshot.data![index].data),
                               );
                             },
                           ));

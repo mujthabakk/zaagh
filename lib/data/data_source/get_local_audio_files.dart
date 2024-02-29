@@ -1,5 +1,5 @@
-import 'package:audio_query/audio_query.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 abstract class GetLocalAudio {
-  Future<List<SongInfo>> getLocalAudioFiles();
+  Future<List<SongModel>> getLocalAudioFiles();
 }

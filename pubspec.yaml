@@ -19,7 +19,7 @@ dependencies:
   audio_video_progress_bar: ^2.0.1
   permission_handler: ^11.3.0
   path_provider: ^2.1.2
-  audio_query: ^0.0.2
+  on_audio_query: ^2.9.0
   
 
 dev_dependencies:
