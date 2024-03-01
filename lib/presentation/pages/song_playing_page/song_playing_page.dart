@@ -9,15 +9,16 @@ import 'package:music_app/presentation/widget/app_title.dart';
 import 'package:music_app/presentation/widget/musicplayingimage_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+// ignore: must_be_immutable
 class SongPlayingPage extends ConsumerStatefulWidget {
-  const SongPlayingPage({
+   SongPlayingPage({
     this.data,
-    this.index,
+    required this.index,
     super.key,
     required this.option,
   });
   final List<SongModel>? data;
-  final int? index;
+   int index;
   final AudioSource option;
 
   @override
@@ -81,7 +82,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
                       MaterialPageRoute(
                           builder: (context) => SongPlayingPage(
                                 option: AudioSource.file(
-                                    widget.data![widget.index! + 1].data),
+                                    widget.data![widget.index++].data),
                                 data: widget.data,
                                 index: widget.index,
                               )),
@@ -99,7 +100,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
                       MaterialPageRoute(
                           builder: (context) => SongPlayingPage(
                                 option: AudioSource.file(
-                                    widget.data![widget.index! - 1].data),
+                                    widget.data![widget.index--].data),
                                 data: widget.data,
                                 index: widget.index,
                               )),
@@ -115,8 +116,10 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
       ),
     );
   }
+  
 
   Future<void> _setupAudioPlayer() async {
+    
     player.playbackEventStream.listen((event) {},
         onError: (Object e, StackTrace stackTrace) {
       log('playbackEventStream error $e');
