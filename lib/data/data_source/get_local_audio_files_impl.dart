@@ -12,6 +12,6 @@ class GetLocalAudioImpl extends GetLocalAudio {
 }
 
 @riverpod
-GetLocalAudio getLocalAudio(GetLocalAudioRef ref) {
-  return GetLocalAudioImpl();
+Future<List<SongModel>> getLocalAudio(GetLocalAudioRef ref) {
+  return GetLocalAudioImpl().getLocalAudioFiles();
 }

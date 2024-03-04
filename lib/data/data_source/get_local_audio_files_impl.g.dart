@@ -6,11 +6,12 @@ part of 'get_local_audio_files_impl.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getLocalAudioHash() => r'83717d249737b0964679d74038105aaf6360be01';
+String _$getLocalAudioHash() => r'a628e9d2f2ccde7ad03030c134b68fb709425d3c';
 
 /// See also [getLocalAudio].
 @ProviderFor(getLocalAudio)
-final getLocalAudioProvider = AutoDisposeProvider<GetLocalAudio>.internal(
+final getLocalAudioProvider =
+    AutoDisposeFutureProvider<List<SongModel>>.internal(
   getLocalAudio,
   name: r'getLocalAudioProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,6 +21,6 @@ final getLocalAudioProvider = AutoDisposeProvider<GetLocalAudio>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef GetLocalAudioRef = AutoDisposeProviderRef<GetLocalAudio>;
+typedef GetLocalAudioRef = AutoDisposeFutureProviderRef<List<SongModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

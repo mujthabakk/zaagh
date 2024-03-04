@@ -4,10 +4,13 @@ class SongTile extends StatelessWidget {
   final Color iconColor;
   final String title;
   final VoidCallback? onListTap;
+  final VoidCallback? ontap;
+
   final String subtitle;
   const SongTile({
     super.key,
     this.iconColor = Colors.grey,
+    this.ontap,
     required this.title,
     this.onListTap,
     required this.subtitle,
@@ -22,12 +25,14 @@ class SongTile extends StatelessWidget {
       leading: Card(
         child: Image.asset('assets/image/zaagh.png'),
       ),
-      trailing: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.favorite,
-            color: iconColor,
-          )),
+      trailing: SizedBox(
+        child: IconButton(
+            onPressed: ontap,
+            icon: Icon(
+              Icons.favorite,
+              color: iconColor,
+            )),
+      ),
     );
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:music_app/data/data_source/object_box_impl.dart';
 import 'package:music_app/presentation/pages/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  ObjectBoxImpl.create();
+
   runApp(const ProviderScope(child: MainApp()));
 }
 

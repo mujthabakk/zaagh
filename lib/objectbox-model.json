@@ -1,0 +1,89 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:2236037415567185548",
+      "lastPropertyId": "9:2334574070248934543",
+      "name": "SongsEntity",
+      "properties": [
+        {
+          "id": "1:1115371175667819859",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2185408789924014034",
+          "name": "data",
+          "type": 9
+        },
+        {
+          "id": "3:5415948308094860687",
+          "name": "artistId",
+          "type": 6
+        },
+        {
+          "id": "4:5680918604886119653",
+          "name": "uri",
+          "type": 9
+        },
+        {
+          "id": "5:5246120938186466072",
+          "name": "album",
+          "type": 9
+        },
+        {
+          "id": "6:3328387613233093370",
+          "name": "artist",
+          "type": 9
+        },
+        {
+          "id": "7:1782357366595134709",
+          "name": "duration",
+          "type": 6
+        },
+        {
+          "id": "8:819932568398650533",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "9:2334574070248934543",
+          "name": "displayName",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:2236037415567185548",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    1691356863556541961
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    7596831694045033042,
+    1997285577364667060,
+    183787324603405807,
+    1043389404652584181,
+    8984500441637289622,
+    1800716600404644161,
+    5902814518794997125,
+    705016222739777811,
+    2918486624237471371,
+    257000298153720914,
+    2747993777051502397,
+    548470016310156392,
+    2037773097350022632,
+    6613828157414030351
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

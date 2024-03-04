@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +13,7 @@ class LocalHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final song = ref.watch(getLocalAudioProvider).getLocalAudioFiles();
+    final song = ref.watch(getLocalAudioProvider);
     return Scaffold(
         appBar: AppBar(
           title: AppTitle(
@@ -23,23 +22,23 @@ class LocalHomePage extends ConsumerWidget {
               image: "assets/icon/music_icon.png",
               titileText: "Local Songs"),
         ),
-        body: FutureBuilder(
-          future: song,
-          builder: (context, snapshot) => snapshot.data == null
+        body: song.when(
+          data: (data) => song.value == null
               ? const Center(
                   child: Text('song empty'),
                 )
               : ListView.separated(
                   itemBuilder: (context, index) => LocalSongTile(
-                        data: snapshot.data!,
+                        data: song.value!,
                         index: index,
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              log(snapshot.data![index].data);
                               return SongPlayingPage(
-                                option: AudioSource.file(
-                                    snapshot.data![index].data), data: snapshot.data!,index: index,
+                                option:
+                                    AudioSource.file(song.value![index].data),
+                                data: song.value!,
+                                index: index,
                               );
                             },
                           ));
@@ -48,7 +47,13 @@ class LocalHomePage extends ConsumerWidget {
                   separatorBuilder: (context, index) => SizedBox(
                         height: context.h(10),
                       ),
-                  itemCount: snapshot.data!.length),
+                  itemCount: song.value!.length),
+          error: (error, stackTrace) => Center(
+            child: Text(error.toString()),
+          ),
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
         ));
   }
 }
