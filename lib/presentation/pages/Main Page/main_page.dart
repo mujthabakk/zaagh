@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/presentation/pages/Favourite%20Page/favourite_page.dart';
 import 'package:music_app/presentation/pages/Search%20Page/search_page.dart';
-import 'package:music_app/presentation/pages/home_screen.dart';
 import 'package:music_app/presentation/pages/local_home_page/local_home_page.dart';
 
 final StateProvider<int> selectedIndex = StateProvider<int>((ref) => 0);
@@ -13,7 +12,6 @@ class MainPage extends ConsumerWidget {
     initialPage: 0,
   );
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -23,7 +21,7 @@ class MainPage extends ConsumerWidget {
             ref.read(selectedIndex.notifier).state = value,
         scrollDirection: Axis.horizontal,
         children: const [
-          HomeScreen(),
+          // HomeScreen(),
           LocalHomePage(),
           SearchPage(),
           FavouritePage()
@@ -46,10 +44,10 @@ class MainPage extends ConsumerWidget {
           showUnselectedLabels: false,
           selectedItemColor: Colors.white,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.home),
+            //   label: 'Home',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.file_copy),
               label: 'Local',

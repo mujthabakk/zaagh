@@ -16,6 +16,14 @@ class FavouritePage extends ConsumerWidget {
     final song = ref.watch(getLocalAudioProvider);
 
     final List<SongsEntity> favsong = ref.watch(addsongProvider);
+    final List<AudioSource> audioSources = song.value!
+        .map(
+          (source) => AudioSource.file(source.data),
+        )
+        .toList();
+    // create playlist
+    final ConcatenatingAudioSource playlist =
+        ConcatenatingAudioSource(children: audioSources);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8 * 2),
@@ -33,15 +41,15 @@ class FavouritePage extends ConsumerWidget {
                   title: "${favsong[index].title}",
                   subtitle: '',
                   // AudioSource.file(song.value![index].data),
-                  // onListTap: () => Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => SongPlayingPage(
-                  //         index: index,
-                  //         option: AudioSource.file(song.value![index].data),
-                  //         playlist: favson,
-                  //       ),
-                  //     )),
+                  onListTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SongPlayingPage(
+                          index: index,
+                          data: song.value,
+                          playlist: playlist,
+                        ),
+                      )),
                   ontap: () {
                     ref
                         .watch(addsongProvider.notifier)

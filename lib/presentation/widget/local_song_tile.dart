@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/model/object_box_model.dart';
 import 'package:music_app/domain/song_storing_use.dart';
+import 'package:music_app/presentation/provider/favprovider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class LocalSongTile extends ConsumerWidget {
@@ -29,6 +30,7 @@ class LocalSongTile extends ConsumerWidget {
         subtitle: const Text("discription"),
         trailing: IconButton(
             onPressed: () {
+              ref.invalidate(isFavProvider);
               ref.watch(addsongProvider.notifier).adding(
                   songsEntity: SongsEntity(
                       data: data[index].data,
@@ -37,17 +39,17 @@ class LocalSongTile extends ConsumerWidget {
                       artist: data[index].artist,
                       duration: data[index].duration,
                       title: data[index].title));
-
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => const FavouritePage(),
-              //     ));
             },
-            icon: const Icon(
-              Icons.favorite,
-              size: 20,
-              color: Color.fromARGB(255, 255, 255, 255),
-            )));
+            icon: ref.watch(isFavProvider(data: data[index].data))
+                ? const Icon(
+                    Icons.favorite,
+                    size: 20,
+                    color: Color.fromARGB(255, 179, 26, 26),
+                  )
+                : const Icon(
+                    Icons.favorite,
+                    size: 20,
+                    color: Color.fromARGB(255, 238, 236, 236),
+                  )));
   }
 }

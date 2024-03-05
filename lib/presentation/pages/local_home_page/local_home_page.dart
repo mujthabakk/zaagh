@@ -31,7 +31,8 @@ class LocalHomePage extends ConsumerWidget {
                 )
                 .toList();
             // create playlist
-            final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: audioSources);
+            final ConcatenatingAudioSource playlist =
+                ConcatenatingAudioSource(children: audioSources);
             return song.value == null
                 ? const Center(
                     child: Text('song empty'),
@@ -46,10 +47,13 @@ class LocalHomePage extends ConsumerWidget {
                                 log(song.value![index].data.toString());
                                 log(song.value.toString());
                                 return SongPlayingPage(
-                                  option:
-                                      AudioSource.file(song.value![index].data),
+                                  // option:
+                                  // AudioSource.file(song.value![index].data),
                                   data: song.value!,
                                   index: index,
+
+                                  playsongs: playmusic(
+                                      index: index, playlist: playlist),
                                   playlist: playlist,
                                 );
                               },
@@ -68,5 +72,10 @@ class LocalHomePage extends ConsumerWidget {
             child: CircularProgressIndicator(),
           ),
         ));
+  }
+
+  playmusic({required playlist, required index}) {
+     player.setAudioSource(playlist, initialIndex: index);
+        
   }
 }

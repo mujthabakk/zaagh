@@ -12,16 +12,17 @@ final AudioPlayer player = AudioPlayer();
 // ignore: must_be_immutable
 class SongPlayingPage extends ConsumerStatefulWidget {
   SongPlayingPage({
-    required this.playlist,
+    this.playsongs,
     this.data,
     required this.index,
     super.key,
-    required this.option,
+    required this.playlist,
   });
+  final ConcatenatingAudioSource playlist;
   final List<SongModel>? data;
   int index;
-  final AudioSource option;
-  final ConcatenatingAudioSource playlist;
+  // final AudioSource option;
+  final VoidCallback? playsongs;
 
   @override
   ConsumerState<SongPlayingPage> createState() => _SongPlayingPageState();
@@ -34,7 +35,6 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    _setupAudioPlayer(option: widget.option);
   }
 
   String formatTime(int seconds) {
@@ -84,40 +84,33 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
               children: [
                 IconButton(
                   onPressed: () {
-                    // player.seekToNext();
-                    // player.seekToNext();
-                    player.pause();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SongPlayingPage(
-                                option: AudioSource.file(
-                                    widget.data![widget.index--].data),
-                                data: widget.data,
-                                index: widget.index,
-                              )),
-                    );
+                    player.seekToPrevious();
                   },
                   icon: const Icon(Icons.skip_previous),
                   iconSize: 55,
                 ),
-                playmusic(
-                  index: widget.index,
-                  playlist: widget.playlist!,
-                ),
+                IconButton(
+                    onPressed: () {
+                      if (player.playing) {
+                        player.pause();
+                      } else {
+                        player.play();
+                      }
+                      ref.read(iconsprovider.notifier).state =
+                          !ref.watch(iconsprovider.notifier).state;
+                    },
+                    icon: ref.watch(iconsprovider)
+                        ? Icon(
+                            Icons.play_arrow_outlined,
+                            size: context.w(60),
+                          )
+                        : Icon(
+                            Icons.pause,
+                            size: context.w(60),
+                          )),
                 IconButton(
                   onPressed: () {
-                    player.pause();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SongPlayingPage(
-                                option: AudioSource.file(
-                                    widget.data![widget.index++].data),
-                                data: widget.data,
-                                index: widget.index,
-                              )),
-                    );
+                    player.seekToNext();
                   },
                   icon: const Icon(Icons.skip_next),
                   iconSize: 55,
@@ -136,7 +129,7 @@ Widget processBar() {
     stream: player.positionStream,
     builder: (context, snapshot) => ProgressBar(
       progress: snapshot.data ?? Duration.zero,
-      buffered: player.bufferedPosition,
+      // buffered: player.bufferedPosition,
       total: player.duration ?? Duration.zero,
       onSeek: (duration) {
         player.seek(duration);
@@ -145,55 +138,9 @@ Widget processBar() {
   );
 }
 
-Widget _playbackControlButton() {
-  return StreamBuilder<PlayerState>(
-    stream: player.playerStateStream,
-    builder: (context, snapshot) {
-      final processingState = snapshot.data?.processingState;
-      final playing = snapshot.data?.playing;
-      if (playing != true) {
-        return IconButton(
-          onPressed: player.play,
-          icon: const Icon(Icons.play_arrow),
-          iconSize: 64,
-        );
-      } else if (processingState != ProcessingState.completed) {
-        return IconButton(
-          onPressed: player.pause,
-          iconSize: 64,
-          icon: const Icon(Icons.pause),
-        );
-      } else {
-        return IconButton(
-          onPressed: () => player.seek(Duration.zero),
-          icon: const Icon(Icons.replay),
-        );
-      }
-    },
-  );
+playmusic(ConcatenatingAudioSource playlist, int index) {
+  player.setAudioSource(playlist, initialIndex: index);
 }
 
-Future<void> _setupAudioPlayer({required option}) async {
-  try {
-    player.setAudioSource(option);
-    if (player.audioSource != null) {
-      player.play();
-    }
-  } catch (e) {
-    throw e.toString();
-  }
-}
-
-playmusic({required playlist, required index}) {
-  if (playlist != null) {
-    IconButton(
-        onPressed: () => player.setAudioSource(playlist!, initialIndex: index),
-        icon: Icon(Icons.play_arrow));
-  } else {
-    IconButton(
-        onPressed: () {
-          player.pause();
-        },
-        icon: Icon(Icons.pause));
-  }
-}
+// final bool playing = true;
+final iconsprovider = StateProvider<bool>((ref) => false);
