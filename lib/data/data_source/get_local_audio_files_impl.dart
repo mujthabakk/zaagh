@@ -11,7 +11,7 @@ class GetLocalAudioImpl extends GetLocalAudio {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<List<SongModel>> getLocalAudio(GetLocalAudioRef ref) {
   return GetLocalAudioImpl().getLocalAudioFiles();
 }

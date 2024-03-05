@@ -8,16 +8,20 @@ class LocalSongTile extends ConsumerWidget {
   final void Function() onTap;
   final List<SongModel> data;
   final int index;
+  final Color? iconcolor;
+
   const LocalSongTile({
     required this.data,
     super.key,
     required this.onTap,
     required this.index,
+    this.iconcolor,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
+        onTap: onTap,
         leading: Card(
           child: Image.asset("assets/image/music _img.png"),
         ),
@@ -26,8 +30,6 @@ class LocalSongTile extends ConsumerWidget {
         trailing: IconButton(
             onPressed: () {
               ref.watch(addsongProvider.notifier).adding(
-                
-                
                   songsEntity: SongsEntity(
                       data: data[index].data,
                       uri: data[index].uri,
@@ -42,10 +44,10 @@ class LocalSongTile extends ConsumerWidget {
               //       builder: (context) => const FavouritePage(),
               //     ));
             },
-            icon: Icon(Icons.favorite,
-                size: 20,
-                color: ref.watch(favorite) ? Colors.white : Colors.red)));
+            icon: const Icon(
+              Icons.favorite,
+              size: 20,
+              color: Color.fromARGB(255, 255, 255, 255),
+            )));
   }
 }
-
-final favorite = StateProvider<bool>((ref) => true);

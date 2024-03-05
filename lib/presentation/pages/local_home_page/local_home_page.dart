@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,31 +24,43 @@ class LocalHomePage extends ConsumerWidget {
               titileText: "Local Songs"),
         ),
         body: song.when(
-          data: (data) => song.value == null
-              ? const Center(
-                  child: Text('song empty'),
+          data: (data) {
+            final List<AudioSource> audioSources = data
+                .map(
+                  (source) => AudioSource.file(source.data),
                 )
-              : ListView.separated(
-                  itemBuilder: (context, index) => LocalSongTile(
-                        data: song.value!,
-                        index: index,
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return SongPlayingPage(
-                                option:
-                                    AudioSource.file(song.value![index].data),
-                                data: song.value!,
-                                index: index,
-                              );
-                            },
-                          ));
-                        },
-                      ),
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: context.h(10),
-                      ),
-                  itemCount: song.value!.length),
+                .toList();
+            // create playlist
+            final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(children: audioSources);
+            return song.value == null
+                ? const Center(
+                    child: Text('song empty'),
+                  )
+                : ListView.separated(
+                    itemBuilder: (context, index) => LocalSongTile(
+                          data: song.value!,
+                          index: index,
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                log(song.value![index].data.toString());
+                                log(song.value.toString());
+                                return SongPlayingPage(
+                                  option:
+                                      AudioSource.file(song.value![index].data),
+                                  data: song.value!,
+                                  index: index,
+                                  playlist: playlist,
+                                );
+                              },
+                            ));
+                          },
+                        ),
+                    separatorBuilder: (context, index) => SizedBox(
+                          height: context.h(10),
+                        ),
+                    itemCount: song.value!.length);
+          },
           error: (error, stackTrace) => Center(
             child: Text(error.toString()),
           ),

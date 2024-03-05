@@ -12,7 +12,6 @@ class Addsong extends _$Addsong {
   }
 
   void removing({required id}) {
-    
     ref.watch(songsEntityProvider).remove(id);
     state = List.from(ref.watch(songsEntityProvider).getAll());
   }
