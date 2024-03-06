@@ -24,6 +24,7 @@ dependencies:
   objectbox_flutter_libs: any
   path: ^1.9.0
   json_serializable: ^6.7.1
+  just_audio_background: ^0.0.1-beta.11
   
 
 dev_dependencies:

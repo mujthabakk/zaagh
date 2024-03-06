@@ -1,10 +1,12 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
+import 'package:music_app/presentation/provider/audio_provider.dart';
+import 'package:music_app/presentation/provider/icon_provider.dart';
 import 'package:music_app/presentation/widget/app_title.dart';
 import 'package:music_app/presentation/widget/musicplayingimage_widget.dart';
+import 'package:music_app/presentation/widgets/process_baar.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 final AudioPlayer player = AudioPlayer();
@@ -55,7 +57,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
-              player.pause();
+              ref.watch(playerProvider).pause();
             },
             icon: const Icon(Icons.arrow_back)),
       ),
@@ -101,11 +103,11 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
                     },
                     icon: ref.watch(iconsprovider)
                         ? Icon(
-                            Icons.play_arrow_outlined,
+                            Icons.pause,
                             size: context.w(60),
                           )
                         : Icon(
-                            Icons.pause,
+                            Icons.play_arrow_outlined,
                             size: context.w(60),
                           )),
                 IconButton(
@@ -123,24 +125,3 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
     );
   }
 }
-
-Widget processBar() {
-  return StreamBuilder<Duration>(
-    stream: player.positionStream,
-    builder: (context, snapshot) => ProgressBar(
-      progress: snapshot.data ?? Duration.zero,
-      // buffered: player.bufferedPosition,
-      total: player.duration ?? Duration.zero,
-      onSeek: (duration) {
-        player.seek(duration);
-      },
-    ),
-  );
-}
-
-playmusic(ConcatenatingAudioSource playlist, int index) {
-  player.setAudioSource(playlist, initialIndex: index);
-}
-
-// final bool playing = true;
-final iconsprovider = StateProvider<bool>((ref) => false);

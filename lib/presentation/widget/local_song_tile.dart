@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/model/object_box_model.dart';
-import 'package:music_app/domain/song_storing_use.dart';
+import 'package:music_app/presentation/provider/db_provider.dart';
 import 'package:music_app/presentation/provider/favprovider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 

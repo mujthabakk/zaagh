@@ -4,8 +4,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:music_app/data/model/object_box_model.dart';
-import 'package:music_app/domain/song_storing_use.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
+import 'package:music_app/presentation/provider/db_provider.dart';
 import 'package:music_app/presentation/widget/song_tile.dart';
 
 class FavouritePage extends ConsumerWidget {

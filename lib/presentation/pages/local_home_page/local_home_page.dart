@@ -75,7 +75,6 @@ class LocalHomePage extends ConsumerWidget {
   }
 
   playmusic({required playlist, required index}) {
-     player.setAudioSource(playlist, initialIndex: index);
-        
+    player.setAudioSource(playlist, initialIndex: index);
   }
 }
