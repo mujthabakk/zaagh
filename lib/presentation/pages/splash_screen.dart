@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:music_app/presentation/pages/Main%20Page/main_page.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,8 +12,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    requestPermission();
-
     super.initState();
     // Simulate a long-running task by using Future.delayed
     Timer(const Duration(seconds: 3), () {
@@ -22,10 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (_) => MainPage()),
       );
     });
-  }
-
-  void requestPermission() {
-    Permission.storage.request();
   }
 
   @override

@@ -7,7 +7,10 @@ class GetLocalAudioImpl extends GetLocalAudio {
   @override
   Future<List<SongModel>> getLocalAudioFiles() async {
     OnAudioQuery audioQuery = OnAudioQuery();
-    return await audioQuery.querySongs();
+    return await audioQuery.querySongs(sortType: SongSortType.TITLE,
+        orderType: OrderType.ASC_OR_SMALLER,
+        uriType: UriType.EXTERNAL,
+        ignoreCase: true,);
   }
 }
 

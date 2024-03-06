@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
@@ -15,6 +16,7 @@ class LocalHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final song = ref.watch(getLocalAudioProvider);
+
     return Scaffold(
         appBar: AppBar(
           title: AppTitle(
@@ -27,7 +29,14 @@ class LocalHomePage extends ConsumerWidget {
           data: (data) {
             final List<AudioSource> audioSources = data
                 .map(
-                  (source) => AudioSource.file(source.data),
+                  (source) => AudioSource.file(
+                    source.data,
+                    tag: MediaItem(
+                      id: '1',
+                      title: source.title,
+                      artist: source.artist,
+                    ),
+                  ),
                 )
                 .toList();
             // create playlist
@@ -78,3 +87,12 @@ class LocalHomePage extends ConsumerWidget {
     player.setAudioSource(playlist, initialIndex: index);
   }
 }
+
+// player.positionStream.listen((_) {
+//       ref.invalidate(currentIndexProvider);
+//       ref.invalidate(playStateProvider);
+//     });
+
+final currentIndexProvider = Provider<int?>((ref) => player.currentIndex);
+
+final playStateProvider = StateProvider<bool>((ref) => false);

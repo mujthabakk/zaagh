@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
+import 'package:music_app/presentation/pages/local_home_page/local_home_page.dart';
 import 'package:music_app/presentation/provider/audio_provider.dart';
 import 'package:music_app/presentation/provider/icon_provider.dart';
 import 'package:music_app/presentation/widget/app_title.dart';
@@ -74,12 +75,17 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
             SizedBox(
               height: context.h(10),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: context.w(8 * 4),
-                vertical: context.h(8 * 3),
-              ),
-              child: processBar(),
+            Column(
+              children: [
+                Text(widget.data![widget.index].title),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.w(8 * 4),
+                    vertical: context.h(8 * 3),
+                  ),
+                  child: processBar(),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -87,6 +93,10 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
                 IconButton(
                   onPressed: () {
                     player.seekToPrevious();
+                    player.positionStream.listen((_) {
+                      ref.invalidate(currentIndexProvider);
+                      ref.invalidate(playStateProvider);
+                    });
                   },
                   icon: const Icon(Icons.skip_previous),
                   iconSize: 55,
@@ -113,6 +123,10 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
                 IconButton(
                   onPressed: () {
                     player.seekToNext();
+                    player.positionStream.listen((_) {
+                      ref.invalidate(currentIndexProvider);
+                      ref.invalidate(playStateProvider);
+                    });
                   },
                   icon: const Icon(Icons.skip_next),
                   iconSize: 55,
