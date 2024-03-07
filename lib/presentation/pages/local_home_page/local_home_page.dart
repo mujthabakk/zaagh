@@ -60,9 +60,9 @@ class LocalHomePage extends ConsumerWidget {
                                   // AudioSource.file(song.value![index].data),
                                   data: song.value!,
                                   index: index,
+                                  // playsongs: playmusic(
+                                  //     index: index, playlist: playlist),
 
-                                  playsongs: playmusic(
-                                      index: index, playlist: playlist),
                                   playlist: playlist,
                                 );
                               },
@@ -82,17 +82,6 @@ class LocalHomePage extends ConsumerWidget {
           ),
         ));
   }
-
-  playmusic({required playlist, required index}) {
-    player.setAudioSource(playlist, initialIndex: index);
-  }
 }
 
-// player.positionStream.listen((_) {
-//       ref.invalidate(currentIndexProvider);
-//       ref.invalidate(playStateProvider);
-//     });
 
-final currentIndexProvider = Provider<int?>((ref) => player.currentIndex);
-
-final playStateProvider = StateProvider<bool>((ref) => false);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
-import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:music_app/data/model/object_box_model.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
 import 'package:music_app/presentation/provider/db_provider.dart';
@@ -13,17 +12,17 @@ class FavouritePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final song = ref.watch(getLocalAudioProvider);
+    // final song = ref.watch(getLocalAudioProvider);
 
     final List<SongsEntity> favsong = ref.watch(addsongProvider);
-    final List<AudioSource> audioSources = song.value!
+    final List<AudioSource> favaudioSources = favsong
         .map(
-          (source) => AudioSource.file(source.data),
+          (source) => AudioSource.file(source.data!),
         )
         .toList();
     // create playlist
-    final ConcatenatingAudioSource playlist =
-        ConcatenatingAudioSource(children: audioSources);
+    final ConcatenatingAudioSource favplaylist =
+        ConcatenatingAudioSource(children: favaudioSources);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8 * 2),
@@ -46,8 +45,8 @@ class FavouritePage extends ConsumerWidget {
                       MaterialPageRoute(
                         builder: (context) => SongPlayingPage(
                           index: index,
-                          data: song.value,
-                          playlist: playlist,
+                          data: favsong,
+                          playlist: favplaylist,
                         ),
                       )),
                   ontap: () {

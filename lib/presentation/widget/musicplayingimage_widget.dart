@@ -7,13 +7,16 @@ class MusicPlayingImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: context.w(400),
-      height: context.w(400),
-      decoration: const BoxDecoration(color: Colors.amber),
-      child: Image.asset(
-        musicplayingimage,
-        fit: BoxFit.cover,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: context.w(400),
+        height: context.w(400),
+        decoration: const BoxDecoration(color: Colors.amber),
+        child: Image.asset(
+          musicplayingimage,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

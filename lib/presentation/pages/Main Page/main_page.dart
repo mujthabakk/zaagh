@@ -20,11 +20,11 @@ class MainPage extends ConsumerWidget {
         onPageChanged: (value) =>
             ref.read(selectedIndex.notifier).state = value,
         scrollDirection: Axis.horizontal,
-        children: const [
+        children:  [
           // HomeScreen(),
-          LocalHomePage(),
+          const LocalHomePage(),
           SearchPage(),
-          FavouritePage()
+          const FavouritePage()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

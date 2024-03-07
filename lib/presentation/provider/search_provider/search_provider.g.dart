@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'audio_provider.dart';
+part of 'search_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$playerHash() => r'e53efc196161de02b6b2e576bea8529d4be11c31';
+String _$searchHash() => r'af9a0811bb14eacd30116a0c590153dd802ff77d';
 
-/// See also [player].
-@ProviderFor(player)
-final playerProvider = AutoDisposeProvider<AudioPlayer>.internal(
-  player,
-  name: r'playerProvider',
+/// See also [Search].
+@ProviderFor(Search)
+final searchProvider =
+    AutoDisposeNotifierProvider<Search, List<SongModel>>.internal(
+  Search.new,
+  name: r'searchProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$playerHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$searchHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PlayerRef = AutoDisposeProviderRef<AudioPlayer>;
+typedef _$Search = AutoDisposeNotifier<List<SongModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
