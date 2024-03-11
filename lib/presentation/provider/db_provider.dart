@@ -22,3 +22,7 @@ class Addsong extends _$Addsong {
     state = List.from(ref.watch(songsEntityProvider).getAll());
   }
 }
+@riverpod
+Future<List<SongsEntity>> dbsong(DbsongRef ref) async {
+  return await ref.watch(addsongProvider);
+}

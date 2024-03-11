@@ -9,7 +9,7 @@ class GetLocalAudioImpl extends GetLocalAudio {
     OnAudioQuery audioQuery = OnAudioQuery();
     return await audioQuery.querySongs(sortType: SongSortType.TITLE,
         orderType: OrderType.ASC_OR_SMALLER,
-        uriType: UriType.EXTERNAL,
+        uriType: UriType.INTERNAL,
         ignoreCase: true,);
   }
 }

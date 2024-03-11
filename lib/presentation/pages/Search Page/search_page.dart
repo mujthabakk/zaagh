@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
+import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
+import 'package:music_app/presentation/provider/db_provider.dart';
 import 'package:music_app/presentation/provider/search_provider/search_provider.dart';
 import 'package:music_app/presentation/widget/song_tile.dart';
 import 'package:music_app/presentation/widgets/Search%20Field/search_field_widget.dart';
@@ -12,6 +16,23 @@ class SearchPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favsong = ref.watch(dbsongProvider);
+
+    final List<AudioSource> favaudioSources = favsong.value!
+        .map(
+          (source) => AudioSource.file(
+            source.data!,
+            tag: MediaItem(
+              id: '1',
+              title: source.title!,
+              artist: source.artist,
+            ),
+          ),
+        )
+        .toList();
+    // create playlist
+    final ConcatenatingAudioSource playlist =
+        ConcatenatingAudioSource(children: favaudioSources);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -22,7 +43,7 @@ class SearchPage extends ConsumerWidget {
             SearchField(
               onPressed: () {
                 ref.watch(searchProvider).clear();
-                ref.watch(searchProvider).clear();
+                ref.invalidate(searchProvider);
               },
             ),
             SizedBox(
@@ -31,6 +52,15 @@ class SearchPage extends ConsumerWidget {
             ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) => SongTile(
+                onListTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SongPlayingPage(
+                        index: index,
+                        data: favsong.value!,
+                        playlist: playlist,
+                      ),
+                    )),
                 title: ref.watch(searchProvider)[index].title,
                 subtitle: '',
               ),
