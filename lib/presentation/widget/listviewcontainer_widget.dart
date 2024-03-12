@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
-import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
 
 class Listviewcontainer extends StatelessWidget {
   const Listviewcontainer({
