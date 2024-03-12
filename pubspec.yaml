@@ -25,6 +25,8 @@ dependencies:
   path: ^1.9.0
   json_serializable: ^6.7.1
   just_audio_background: ^0.0.1-beta.11
+  spotify_sdk: ^3.0.0-dev.3
+  flutter_dotenv: ^5.1.0
   
 
 dev_dependencies:

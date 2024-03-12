@@ -4,7 +4,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
-import 'package:music_app/presentation/provider/db_provider.dart';
 import 'package:music_app/presentation/provider/search_provider/search_provider.dart';
 import 'package:music_app/presentation/widget/song_tile.dart';
 import 'package:music_app/presentation/widgets/Search%20Field/search_field_widget.dart';
@@ -16,15 +15,15 @@ class SearchPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favsong = ref.watch(dbsongProvider);
+    final favsong = ref.watch(searchProvider);
 
-    final List<AudioSource> favaudioSources = favsong.value!
+    final List<AudioSource> favaudioSources = favsong
         .map(
           (source) => AudioSource.file(
-            source.data!,
+            source.data,
             tag: MediaItem(
               id: '1',
-              title: source.title!,
+              title: source.title,
               artist: source.artist,
             ),
           ),
@@ -52,12 +51,13 @@ class SearchPage extends ConsumerWidget {
             ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) => SongTile(
+                
                 onListTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => SongPlayingPage(
                         index: index,
-                        data: favsong.value!,
+                        data: favsong,
                         playlist: playlist,
                       ),
                     )),

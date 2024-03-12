@@ -50,7 +50,9 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
   Widget build(BuildContext context) {
     player.positionStream.listen((_) {
       ref.invalidate(currentIndexProvider);
+      ref.watch(currentIndexProvider);
       ref.invalidate(playStateProvider);
+      ref.watch(playStateProvider);
     });
 
     return Scaffold(
@@ -87,7 +89,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
               Column(
                 children: [
                   Text(
-                      widget.data![ref.watch(currentIndexProvider) ?? 0].title),
+                      widget.data![ref.watch(currentIndexProvider)!].title),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: context.w(8 * 4),
