@@ -5,6 +5,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
 import 'package:music_app/presentation/provider/search_provider/search_provider.dart';
+import 'package:music_app/presentation/widget/Not%20Found/not_found_widget.dart';
 import 'package:music_app/presentation/widget/song_tile.dart';
 import 'package:music_app/presentation/widget/search_field_widget.dart';
 
@@ -51,24 +52,28 @@ class SearchPage extends ConsumerWidget {
             SizedBox(
               height: context.h(20),
             ),
-            ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) => SongTile(
-                onListTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SongPlayingPage(
-                        index: index,
-                        data: favsong,
-                        playlist: playlist,
-                      ),
-                    )),
-                title: ref.watch(searchProvider)[index].title,
-                subtitle: '',
-              ),
-              itemCount: ref.watch(searchProvider).length,
-              separatorBuilder: (context, index) => const Divider(),
-            )
+            ref.watch(searchProvider).isEmpty
+                ? const Center(
+                    child: NotFound(),
+                  )
+                : ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => SongTile(
+                      onListTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SongPlayingPage(
+                              index: index,
+                              data: favsong,
+                              playlist: playlist,
+                            ),
+                          )),
+                      title: ref.watch(searchProvider)[index].title,
+                      subtitle: '',
+                    ),
+                    itemCount: ref.watch(searchProvider).length,
+                    separatorBuilder: (context, index) => const Divider(),
+                  )
           ],
         ),
       ),
