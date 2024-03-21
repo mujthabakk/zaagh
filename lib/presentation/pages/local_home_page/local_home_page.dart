@@ -8,6 +8,7 @@ import 'package:music_app/core/utils/dynamic_size.dart';
 import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:music_app/presentation/pages/song_playing_page/song_playing_page.dart';
 import 'package:music_app/presentation/widget/app_title.dart';
+import 'package:music_app/presentation/widget/drawer_widget.dart';
 import 'package:music_app/presentation/widget/local_song_tile.dart';
 
 class LocalHomePage extends ConsumerWidget {
@@ -25,6 +26,7 @@ class LocalHomePage extends ConsumerWidget {
               image: "assets/icon/music_icon.png",
               titileText: "Local Songs"),
         ),
+        drawer: const DrawerWidget(),
         body: song.when(
           data: (data) {
             final List<AudioSource> audioSources = data
@@ -83,5 +85,3 @@ class LocalHomePage extends ConsumerWidget {
         ));
   }
 }
-
-

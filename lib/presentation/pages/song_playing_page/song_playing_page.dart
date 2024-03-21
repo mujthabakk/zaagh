@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/utils/dynamic_size.dart';
-import 'package:music_app/presentation/provider/audio_provider.dart';
 import 'package:music_app/presentation/provider/icon_provider.dart';
 import 'package:music_app/presentation/provider/music_playingneed_provider.dart';
 import 'package:music_app/presentation/provider/setaudiosource.dart';
 import 'package:music_app/presentation/widget/app_title.dart';
 import 'package:music_app/presentation/widget/musicplayingimage_widget.dart';
-import 'package:music_app/presentation/widgets/process_baar.dart';
+import 'package:music_app/presentation/widget/process_baar.dart';
 
 final AudioPlayer player = AudioPlayer();
 
@@ -67,7 +66,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
-              ref.watch(playerProvider).pause();
+              player.pause();
             },
             icon: const Icon(Icons.arrow_back)),
       ),
@@ -88,8 +87,7 @@ class _SongPlayingPageState extends ConsumerState<SongPlayingPage> {
               ),
               Column(
                 children: [
-                  Text(
-                      widget.data![ref.watch(currentIndexProvider)!].title),
+                  Text(widget.data![ref.watch(currentIndexProvider)!].title),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: context.w(8 * 4),

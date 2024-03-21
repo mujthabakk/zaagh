@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:music_app/presentation/provider/search_provider/search_provider.dart';
-import 'package:music_app/presentation/widgets/Not%20Found/not_found_widget.dart';
+import 'package:music_app/presentation/widget/Not%20Found/not_found_widget.dart';
 
 class SearchField extends ConsumerWidget {
   final VoidCallback? onPressed;
@@ -20,9 +19,9 @@ class SearchField extends ConsumerWidget {
           if (value.isEmpty) {
             const NotFound();
           }
-          ref
-              .watch(searchProvider.notifier)
-              .songsearch(value, ref.watch(getLocalAudioProvider).value!);
+          ref.watch(searchProvider.notifier).songsearch(
+                value,
+              );
         },
         controller: controller,
         decoration: InputDecoration(

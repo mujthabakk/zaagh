@@ -1,3 +1,4 @@
+import 'package:music_app/data/data_source/get_local_audio_files_impl.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part "search_provider.g.dart";
@@ -9,14 +10,16 @@ class Search extends _$Search {
     return [];
   }
 
-  songsearch(String str, List<SongModel> song) {
-    RegExp regex = RegExp(str, caseSensitive: false);
+  songsearch(
+    String str,
+  ) {
+    List<SongModel>? song = ref.watch(getLocalAudioProvider).value!;
+    RegExp regex = RegExp(
+      str,
+    );
     state = [
       for (SongModel songs in song)
-        if (regex.hasMatch(songs.title)) songs
+        if (regex.hasMatch(songs.title.toLowerCase())) songs
     ];
   }
 }
-
-
- 

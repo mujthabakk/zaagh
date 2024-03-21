@@ -1,6 +1,6 @@
 import 'package:music_app/data/data_source/object_box_impl.dart';
 import 'package:music_app/data/model/object_box_model.dart';
-import 'package:music_app/presentation/provider/favprovider.dart';
+import 'package:music_app/presentation/provider/favprovider/favprovider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'db_provider.g.dart';

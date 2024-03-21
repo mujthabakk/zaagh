@@ -21,7 +21,6 @@ class MainPage extends ConsumerWidget {
             ref.read(selectedIndex.notifier).state = value,
         scrollDirection: Axis.horizontal,
         children:  [
-          // HomeScreen(),
           const LocalHomePage(),
           SearchPage(),
           const FavouritePage()

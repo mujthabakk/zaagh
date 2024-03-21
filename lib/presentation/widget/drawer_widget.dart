@@ -14,19 +14,24 @@ class DrawerWidget extends StatelessWidget {
         padding: EdgeInsets.only(top: context.h(8 * 9)),
         children: <Widget>[
           DrawerListTile(
-            drawerText: 'Profile',
+            drawerText: 'feedback ',
             ontap: () {},
-            icon: Icons.account_circle,
+            icon: Icons.feedback_outlined,
           ),
           DrawerListTile(
-            drawerText: 'settings',
+            drawerText: 'about  ',
             ontap: () {},
-            icon: Icons.settings,
+            icon: Icons.info,
           ),
           DrawerListTile(
-            drawerText: 'logout',
+            drawerText: 'policy ',
             ontap: () {},
-            icon: Icons.logout,
+            icon: Icons.policy,
+          ),
+          DrawerListTile(
+            drawerText: 'Terms&conditions  ',
+            ontap: () {},
+            icon: Icons.policy,
           ),
         ],
       ),

@@ -20,7 +20,7 @@ final dbsongProvider = AutoDisposeFutureProvider<List<SongsEntity>>.internal(
 );
 
 typedef DbsongRef = AutoDisposeFutureProviderRef<List<SongsEntity>>;
-String _$addsongHash() => r'83589349dcdb6ea44def6478d5f74901e473ad65';
+String _$addsongHash() => r'7ea1c146490d7569f4449967e29125281035f150';
 
 /// See also [Addsong].
 @ProviderFor(Addsong)

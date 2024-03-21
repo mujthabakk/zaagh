@@ -27,18 +27,4 @@ class SongsEntity {
       required this.title});
 }
 
-  // String? name;
-  // int? artistId;
-  // String? uri;
-
-  // String? displayName;
-
-  // String? album;
-
-  // int? albumId;
-
-  // String? artist;
-
-  // int? duration;
-
-  // String? title;
+  
